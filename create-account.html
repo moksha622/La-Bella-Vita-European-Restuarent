@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account – La Bella Vita</title>
+<style>
+body{font-family:Arial,sans-serif;background:#fdf7f0;margin:0;display:flex;justify-content:center;align-items:center;height:100vh;}
+.container{background:#fff;padding:40px 30px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.1);width:350px;text-align:center;}
+h2{color:#e6b800;margin-bottom:25px;}
+input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:1px solid #ccc;}
+.password-toggle{display:flex;justify-content:flex-end;margin-bottom:10px;font-size:12px;cursor:pointer;color:#e6b800;}
+button{width:100%;padding:12px;background:#e6b800;border:none;border-radius:50px;color:#fff;font-size:16px;cursor:pointer;transition:0.3s;}
+button:hover{background:#cc9900;}
+p{margin-top:15px;}
+p a{color:#e6b800;text-decoration:none;}
+p a:hover{text-decoration:underline;}
+.error{color:red;font-size:14px;margin-bottom:10px;display:none;}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Create Account</h2>
+  <div class="error" id="accountError"></div>
+  <form id="createForm" onsubmit="return validateAccount()">
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <div class="password-toggle" onclick="togglePassword('password')">Show/Hide Password</div>
+    <input type="password" id="confirmPassword" placeholder="Confirm Password">
+    <div class="password-toggle" onclick="togglePassword('confirmPassword')">Show/Hide Confirm</div>
+
+    <button type="submit">Create Account</button>
+  </form>
+
+  <p>Already have an account? <a href="login.html">Login</a></p>
+  <a class="back" href="index.html">← Back to Home</a>
+</div>
+
+<script>
+function togglePassword(id){
+  const pass = document.getElementById(id);
+  pass.type = pass.type==="password"?"text":"password";
+}
+
+function validateAccount(){
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const confirm = document.getElementById('confirmPassword').value.trim();
+  const errorDiv = document.getElementById('accountError');
+
+  if(name===""||email===""||password===""||confirm===""){
+    errorDiv.textContent="Please fill in all fields.";
+    errorDiv.style.display="block";
+    return false;
+  }
+  if(password!==confirm){
+    errorDiv.textContent="Passwords do not match.";
+    errorDiv.style.display="block";
+    return false;
+  }
+
+  // Save user in localStorage
+  const user = {name:name, password:password};
+  localStorage.setItem(email, JSON.stringify(user));
+
+  // Auto-login (optional)
+  sessionStorage.setItem("loggedInUser", email);
+
+  // ✅ Redirect to success page
+  window.location.href="successfully-created-account.html"; 
+  return false;
+}
+</script>
+
+</body>
+</html>

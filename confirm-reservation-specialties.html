@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Reservation Confirmed – La Bella Vita</title>
+<style>
+  body {font-family:Arial,sans-serif;background:#fdf7f0;color:#333;margin:0;padding:0;}
+  header {background:#e6b800;color:#fff;text-align:center;padding:40px 20px;}
+  h1{margin-bottom:20px;}
+  .card{max-width:700px;margin:20px auto;background:#fff;padding:30px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.1);}
+  h2{text-align:center;margin-bottom:15px;}
+  .dish{text-align:center;font-weight:700;color:#e6b800;margin-bottom:15px;}
+  table{width:100%;border-collapse:collapse;margin-bottom:20px;}
+  th, td{padding:12px;text-align:left;}
+  th{background:#f3f3f3;font-weight:600;}
+  tr:nth-child(even){background:#f9f9f9;}
+  tr:nth-child(odd){background:#fff;}
+  .back-home{display:block;text-align:center;padding:12px 24px;background:#e6b800;color:#fff;text-decoration:none;border-radius:999px;transition:0.3s;margin:0 auto;}
+  .back-home:hover{background:#cc9900;}
+
+.confirmation-container {
+    max-width: 500px;
+    margin: 100px auto;
+    text-align: center;
+    padding: 40px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .order-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 30px;
+    background: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .order-btn:hover {
+    background: #1e8449;
+  }
+
+  .back-home {
+    display: block;
+    margin-top: 20px;
+    color: #27ae60;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+</style>
+</head>
+<body>
+<header>
+  <h1>Reservation Confirmed!</h1>
+</header>
+
+<div class="card">
+  <h2>Thank You for Your Reservation</h2>
+  <p class="dish">Reserved Dish: <span id="dishName">[Dish Name]</span></p>
+
+  <table>
+    <tr><th>Full Name</th><td id="userName">[Name]</td></tr>
+    <tr><th>Phone</th><td id="userPhone">[Phone]</td></tr>
+    <tr><th>Email</th><td id="userEmail">[Email]</td></tr>
+    <tr><th>Date</th><td id="userDate">[Date]</td></tr>
+    <tr><th>Time</th><td id="userTime">[Time]</td></tr>
+    <tr><th>Guests</th><td id="userGuests">[Guests]</td></tr>
+    <tr><th>Special Requests</th><td id="userMessage">[Message]</td></tr>
+  </table>
+
+  <p>We look forward to serving you a delightful European dining experience!</p>
+
+
+
+  <div class="confirmation-container">
+  <h2>Reservation Confirmed 🎉</h2>
+  <p>Your table has been successfully reserved. We look forward to serving you!</p>
+  
+  <!-- New Button to Order Payment -->
+  <button onclick="window.location.href='order-payment.html'" class="order-btn">
+    Proceed to Order Payment
+  </button>
+
+
+
+
+<br><br><br>
+
+
+
+<!-- Back to Home button -->
+
+      <a class="back" href="restuarent europe3.html">← Back to Home</a>
+
+  
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  document.getElementById('dishName').textContent = params.get('dish') || "Not specified";
+  document.getElementById('userName').textContent = params.get('name') || "Not specified";
+  document.getElementById('userPhone').textContent = params.get('phone') || "Not specified";
+  document.getElementById('userEmail').textContent = params.get('email') || "Not specified";
+  document.getElementById('userDate').textContent = params.get('date') || "Not specified";
+  document.getElementById('userTime').textContent = params.get('time') || "Not specified";
+  document.getElementById('userGuests').textContent = params.get('guests') || "Not specified";
+  document.getElementById('userMessage').textContent = params.get('message') || "None";
+</script>
+</body>
+</html>
